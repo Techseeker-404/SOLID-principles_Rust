@@ -1,36 +1,7 @@
 #![allow(dead_code)]
 
-#[derive(Debug)]
-struct Order {
-    items: Vec<String>,
-    quantities: Vec<i32>,
-    prices: Vec<f32>,
-    status: Status,
-}
-
-#[derive(Debug)]
-enum Status {
-    OPEN,
-    PAID,
-}
-
-impl Order {
-    fn new() -> Self {
-        Self {
-            items: vec![],
-            quantities: vec![],
-            prices: vec![],
-            status: Status::OPEN,
-        }
-    }
-
-    fn add_item(&mut self, item_name: String, quantity: i32, price: f32) {
-        self.items.push(item_name);
-        self.quantities.push(quantity);
-        self.prices.push(price);
-
-    }
-}
+mod order;
+use order::{Order, Status};
 
 trait PaymentProcessor {
     fn pay(&self, order: &mut Order, security_code: String);
